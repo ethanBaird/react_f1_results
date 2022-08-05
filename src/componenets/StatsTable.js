@@ -11,7 +11,9 @@ const StatsTable = ({driversStandings}) => {
                     <th>Points</th>
                 </tr>
             </thead>
-            <StatsTableRow driversStandings={driversStandings}/>
+            <tbody>
+                <StatsTableRow driversStandings={driversStandings}/>
+            </tbody>
         </table>
             
     )
