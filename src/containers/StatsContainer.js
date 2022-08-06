@@ -1,14 +1,17 @@
 import { useEffect, useState } from "react"
 import SeasonSelect from "../componenets/SeasonSelect"
-import StatsTable from "../componenets/StatsTable"
+import DriversStandingsTable from "../componenets/DriversStandingsTable"
+import ConstructorsStandingsTable from "../componenets/ConstructorsStandingsTable"
 
 const StatsContainer = () => {
     const [season, setSeason] = useState('2022')
     const [seasons, setSeasons] = useState([])
     const [driversStandings, setDriversStandings] = useState([])
+    const [constructorsStandings, setConstructorsStandings] = useState([])
     
     useEffect(() => {
         getDriversStandings()
+        getConstructorsStandings()
     }, [season])
 
     useEffect(() => {
@@ -16,7 +19,6 @@ const StatsContainer = () => {
     }, [])
 
     const getSeasons = () => {
-        
         const start = 1950;
         const end = 2022;
         const range = [...Array(end - start + 1).keys()].map(x => x + start);
@@ -34,6 +36,15 @@ const StatsContainer = () => {
         });
     }
 
+    const getConstructorsStandings = () => {
+        fetch(`https://ergast.com/api/f1/${season}/constructorStandings.json`)
+        .then(res => res.json())
+        .then(data => {
+            let constructorsStandings = data.MRData.StandingsTable.StandingsLists[0].ConstructorStandings
+            setConstructorsStandings(constructorsStandings);
+        });
+    };
+
     const onSeasonSelect = (season) => {
         setSeason(season)
     }
@@ -44,7 +55,8 @@ const StatsContainer = () => {
     return (
         <>
             <SeasonSelect seasons={seasons} onSeasonSelect={onSeasonSelect}/>
-            <StatsTable driversStandings={driversStandings}/>
+            <DriversStandingsTable driversStandings={driversStandings}/>
+            <ConstructorsStandingsTable constructorsStandings={constructorsStandings}/>
         </>
             
     )

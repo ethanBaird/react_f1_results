@@ -1,4 +1,4 @@
-const StatsTableRow = ({driversStandings}) => {
+const DriversStandingsRow = ({driversStandings}) => {
 
     const standingsRows = driversStandings.map((standing, index) => {
         return (
@@ -17,4 +17,4 @@ const StatsTableRow = ({driversStandings}) => {
         )
 }
 
-export default StatsTableRow
+export default DriversStandingsRow

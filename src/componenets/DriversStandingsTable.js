@@ -1,6 +1,6 @@
-import StatsTableRow from "./StatsTableRow"
+import DriversStandingRow from "./DriversStandingRow"
 
-const StatsTable = ({driversStandings}) => {
+const DriversStandingsTable = ({driversStandings}) => {
     return (
         <table>
             <thead>
@@ -12,11 +12,11 @@ const StatsTable = ({driversStandings}) => {
                 </tr>
             </thead>
             <tbody>
-                <StatsTableRow driversStandings={driversStandings}/>
+                <DriversStandingRow driversStandings={driversStandings}/>
             </tbody>
         </table>
             
     )
 }
 
-export default StatsTable
+export default DriversStandingsTable
