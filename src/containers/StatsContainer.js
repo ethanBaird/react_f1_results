@@ -53,12 +53,13 @@ const StatsContainer = () => {
 
     
     return (
-        <>
+        <div id="stats-container">
             <SeasonSelect seasons={seasons} onSeasonSelect={onSeasonSelect}/>
-            <DriversStandingsTable driversStandings={driversStandings}/>
-            <ConstructorsStandingsTable constructorsStandings={constructorsStandings}/>
-        </>
-            
+            <div id="standings-tables">
+                <DriversStandingsTable driversStandings={driversStandings}/>
+                <ConstructorsStandingsTable constructorsStandings={constructorsStandings} driversStandings={driversStandings}/>
+            </div>
+        </div>
     )
 }
 
