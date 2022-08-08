@@ -27,6 +27,17 @@ const StatsContainer = () => {
         setSeasons(strRange)
     }
 
+    const getRaces = () => {
+        // insert loop through races
+        fetch(`https://ergast.com/api/f1/${season}/${round}/results.json`)
+            .then(res => res.json())
+            .then(data => {
+                let race = data.MRdata.RaceTable.Races
+                races.push(race);
+        
+            })
+    }
+
     const getDriversStandings = () => {
         fetch(`https://ergast.com/api/f1/${season}/driverStandings.json`)
         .then(res => res.json())
