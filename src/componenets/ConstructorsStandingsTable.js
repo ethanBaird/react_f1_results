@@ -8,7 +8,6 @@ const ConstructorsStandingsTable = ({constructorsStandings, driversStandings}) =
                 <tr>
                     <th>Position</th>
                     <th>Constructor</th>
-                    <th>Drivers</th>
                     <th>Points</th>
                 </tr>
             </thead>

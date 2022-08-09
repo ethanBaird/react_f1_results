@@ -19,24 +19,39 @@ const StatsContainer = () => {
     }, [])
 
     const getSeasons = () => {
-        const start = 1950;
-        const end = 2022;
-        const range = [...Array(end - start + 1).keys()].map(x => x + start);
-        const sortedRange = range.sort((a, b) => b-a);
-        const strRange = sortedRange.map((number) => number.toString());
-        setSeasons(strRange)
-    }
+        // const start = 1950;
+        // const end = 2022;
+        // const range = [...Array(end - start + 1).keys()].map(x => x + start);
+        // const sortedRange = range.sort((a, b) => b-a);
+        // const strRange = sortedRange.map((number) => number.toString());
+        // setSeasons(strRange)
+        fetch(`http://ergast.com/api/f1/seasons.json?limit=100`)
+        .then(res => res.json())
+        .then(data => {
+            let seasons = data.MRData.SeasonTable.Seasons.map((season => season.season))
+            setSeasons(seasons)
+        }) 
 
-    const getRaces = () => {
-        // insert loop through races
-        fetch(`https://ergast.com/api/f1/${season}/${round}/results.json`)
-            .then(res => res.json())
-            .then(data => {
-                let race = data.MRdata.RaceTable.Races
-                races.push(race);
-        
-            })
     }
+    
+    // async function getSeasons() {
+    //     const limitPerPage = 30
+    //     let skipNo = 0
+    //     let mostRecentReturn = {}
+    //     let results = []
+    //     do {
+    //         const response = await fetch(`http://ergast.com/api/f1/seasons.json?limit=${limitPerPage}&offset=${skipNo}`);
+    //         console.log(response);
+    //         const data = await response.json();
+    //         console.log(data);
+    //         mostRecentReturn = data;
+    //         results= results.concat(data.MRData.SeasonTable.Seasons);
+    //         skipNo+=limitPerPage}
+    //     while (mostRecentReturn.MRData.SeasonTable.Seasonslength === 30);
+    //         setSeasons(results);
+    // }
+    
+
 
     const getDriversStandings = () => {
         fetch(`https://ergast.com/api/f1/${season}/driverStandings.json`)
@@ -63,15 +78,15 @@ const StatsContainer = () => {
    
 
     
-    return (
-        <div id="stats-container">
-            <SeasonSelect seasons={seasons} onSeasonSelect={onSeasonSelect}/>
-            <div id="standings-tables">
-                <DriversStandingsTable driversStandings={driversStandings}/>
-                <ConstructorsStandingsTable constructorsStandings={constructorsStandings} driversStandings={driversStandings}/>
-            </div>
-        </div>
-    )
+    // return (
+    //     <div id="stats-container">
+    //         <SeasonSelect seasons={seasons} onSeasonSelect={onSeasonSelect}/>
+    //         <div id="standings-tables">
+    //             <DriversStandingsTable driversStandings={driversStandings}/>
+    //             <ConstructorsStandingsTable constructorsStandings={constructorsStandings} driversStandings={driversStandings}/>
+    //         </div>
+    //     </div>
+    // )
 }
 
 export default StatsContainer
