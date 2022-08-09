@@ -1,12 +1,17 @@
 import './App.css';
+import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 import StatsContainer from './containers/StatsContainer';
+import NavBar from './componenets/NavBar';
 
 function App() {
   return (
-    <div className="App">
-      <h1>F1 STATS</h1>
-      <StatsContainer/>
-    </div>
+    <Router>
+      <NavBar/>
+      <Routes>
+        <Route path='/'></Route>
+        <Route path='/standings' element={<StatsContainer/>}></Route>
+      </Routes>
+    </Router>
   );
 }
 

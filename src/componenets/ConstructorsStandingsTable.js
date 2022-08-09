@@ -2,19 +2,21 @@ import ConstructorsStandingsRow from "./ConstructorsStandingsRow"
 
 const ConstructorsStandingsTable = ({constructorsStandings, driversStandings}) => { 
     return (
-        <table>
-            <caption><h2>Constructors' Standings</h2></caption>
-            <thead>
-                <tr>
-                    <th>Position</th>
-                    <th>Constructor</th>
-                    <th>Points</th>
-                </tr>
-            </thead>
-            <tbody>
-                <ConstructorsStandingsRow constructorsStandings={constructorsStandings} driversStandings={driversStandings}/>
-            </tbody>
-        </table>
+       <>
+            <h2>Constructors Championship</h2>
+            <table id="constructors-standings-table" className="standings-table">
+                <thead>
+                    <tr>
+                        <th>Position</th>
+                        <th>Constructor</th>
+                        <th>Points</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <ConstructorsStandingsRow constructorsStandings={constructorsStandings} driversStandings={driversStandings}/>
+                </tbody>
+            </table>
+       </>
     )
 }
 
