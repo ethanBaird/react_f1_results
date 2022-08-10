@@ -1,7 +1,6 @@
-import './App.css';
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 import StatsContainer from './containers/StatsContainer';
-import NavBar from './componenets/NavBar';
+import NavBar from './components/NavBar';
 
 function App() {
   return (

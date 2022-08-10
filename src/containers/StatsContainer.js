@@ -1,8 +1,8 @@
-import './StatsContainer.css'
 import { useEffect, useState } from "react"
-import SeasonSelect from "../componenets/SeasonSelect"
-import DriversStandingsTable from "../componenets/DriversStandingsTable"
-import ConstructorsStandingsTable from "../componenets/ConstructorsStandingsTable"
+import SeasonSelect from "../components/SeasonSelect"
+import DriversStandingsTable from "../components/DriversStandingsTable"
+import ConstructorsStandingsTable from "../components/ConstructorsStandingsTable"
+import styled from 'styled-components'
 
 const StatsContainer = () => {
     const [season, setSeason] = useState()
@@ -11,13 +11,13 @@ const StatsContainer = () => {
     const [constructorsStandings, setConstructorsStandings] = useState([])
     
     useEffect(() => {
+        getSeasons()
+    },[])
+    
+    useEffect(() => {
         getDriversStandings()
         getConstructorsStandings()
-    }, [season])
-
-    useEffect(() => {
-        getSeasons()
-    }, [])
+    },[season])
 
     const getSeasons = () => {
         fetch(`http://ergast.com/api/f1/seasons.json?limit=20&offset=63`)
@@ -28,7 +28,6 @@ const StatsContainer = () => {
             setSeasons(orderedSeasons);
             setSeason(orderedSeasons[0]);
         }) 
-
     }
     
     const getDriversStandings = () => {
@@ -54,15 +53,30 @@ const StatsContainer = () => {
     }
 
     return (
-        <div id="stats-container">
+        <Container>
             <SeasonSelect seasons={seasons} onSeasonSelect={onSeasonSelect}/>
-
+            <StandingsTables>
                 <DriversStandingsTable driversStandings={driversStandings}/>
 
-                <ConstructorsStandingsTable constructorsStandings={constructorsStandings} driversStandings={driversStandings}/>
-
-        </div>
+                <ConstructorsStandingsTable constructorsStandings={constructorsStandings}/>
+            </StandingsTables>
+            
+        </Container>
     )
+
 }
+
+const Container = styled.div`
+    background-color: whitesmoke;
+    border-radius: 10px;
+    margin: 2rem;
+    padding: 1rem;
+    text-align: center;
+`
+
+const StandingsTables = styled.div`
+    display: flex;
+    justify-content: space-evenly;
+`
 
 export default StatsContainer
