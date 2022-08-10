@@ -8,7 +8,7 @@ const ConstructorsStandingsRow = ({constructorsStandings}, driversStandings) => 
         return (
             <tr key={index}>
                 <td>{standing.position}</td>
-                <td>{standing.Constructor.name}</td>
+                <td><b>{standing.Constructor.name}</b></td>
                 <td>{standing.points}</td>
             </tr>
             )

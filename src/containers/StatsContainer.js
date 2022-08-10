@@ -27,7 +27,6 @@ const StatsContainer = () => {
             const orderedSeasons = seasons.reverse()
             setSeasons(orderedSeasons);
             setSeason(orderedSeasons[0]);
-    
         }) 
 
     }

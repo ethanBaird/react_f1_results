@@ -1,6 +1,10 @@
+import './NavBar.css'
+
 const NavBar = () => {
     return(
-        <a href="/standings">Standings</a>
+        <nav>
+            <a href="/standings">Standings</a>
+        </nav>
     )
 }
 

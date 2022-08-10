@@ -7,7 +7,7 @@ const ConstructorsStandingsTable = ({constructorsStandings, driversStandings}) =
             <table id="constructors-standings-table" className="standings-table">
                 <thead>
                     <tr>
-                        <th>Position</th>
+                        <th>#</th>
                         <th>Constructor</th>
                         <th>Points</th>
                     </tr>
